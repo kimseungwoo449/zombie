@@ -2,7 +2,9 @@ package zombie;
 
 public class Hero extends Unit implements Playerable, Damageable {
 	public Hero() {
-		super(150, 2, 10, 1, 1, 0, "Player"); // 플레이어 초기 셋팅
+		super(150, 10, 1, 0, "Player"); // 플레이어 초기 셋팅
+		setPosition();
+		setItems(2);
 	}
 
 	@Override
@@ -43,8 +45,8 @@ public class Hero extends Unit implements Playerable, Damageable {
 	}
 
 	@Override
-	public int getItems() {
-		return super.items;
+	public void setPosition() {
+		this.position++;
 	}
 
 	@Override
