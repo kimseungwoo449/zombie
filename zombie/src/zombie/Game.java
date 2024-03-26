@@ -1,5 +1,6 @@
 package zombie;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -11,15 +12,32 @@ public class Game {
 
 	private Scanner sc = new Scanner(System.in);
 	private Hero player = Hero.getInstance();
-	private Zombie zombie;
 
 	private boolean isRun;
-
+	private ArrayList<Unit> enemys;
 	private Game() {
-		zombie = new Zombie();
+		enemys = new ArrayList<Unit>();
+		checkAndAddList();
 		isRun = true;
 	}
-
+	
+	private void checkAndAddList() {
+		for(int i =0;i<3;i++) {
+			Zombie zombie = new Zombie();
+			boolean isExist = false;
+			for(Unit unit :enemys) {
+				if(unit.getPosition()==zombie.getPosition()) {
+					isExist = true;
+				}
+			}
+			if(!isExist) {
+				enemys.add(zombie);
+			}else
+				i--;
+		}
+		enemys.add(new Boss());
+	}
+	
 	private static Game instance = new Game();
 
 	public static Game getInstance() {
@@ -59,8 +77,10 @@ public class Game {
 	}
 
 	private Unit checkMonster() {
-		if (zombie.getPosition() == player.getPosition()) {
-			return zombie;
+		for(Unit enemy : enemys) {
+			if(player.getPosition()==enemy.getPosition()) {
+				return enemy;
+			}
 		}
 		return null;
 	}
@@ -96,11 +116,15 @@ public class Game {
 	private void calculateResult(Unit enemy) {
 		int exp = enemy.getExp();
 		int potions = enemy.getItems();
-
+		
+		System.out.println("==== 결과 ====");
+		System.out.println(player);
+		System.out.println(enemy);
+		
 		if (potions > 0) {
-			System.out.printf("포션 %d개 발견!\n");
+			System.out.printf("포션 %d개 발견!\n", potions);
 		}
-
+		
 		player.setExp(exp);
 		player.setItems(potions);
 		player.setLv();
