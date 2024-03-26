@@ -57,6 +57,7 @@ public class Unit {
 
 	public void setCurrentHp(int attack) {
 		this.currentHp -= attack;
+		dead();
 	}
 	
 	public int getPosition() {
@@ -75,7 +76,7 @@ public class Unit {
 		return this.isDead;
 	}
 	
-	public void dead() {
+	private void dead() {
 		if(this.currentHp<=0)
 			this.isDead = true;
 	}
