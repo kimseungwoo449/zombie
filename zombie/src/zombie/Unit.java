@@ -1,6 +1,10 @@
 package zombie;
 
+import java.util.Random;
+
 public class Unit {
+	protected Random ran = new Random();
+
 	private int currentHp; // 현재 hp
 	private int maxHp; // 최대 hp
 	private int items; // 가진 포션 수
@@ -11,7 +15,9 @@ public class Unit {
 
 	private int position; // 위치
 
-	protected Unit(int maxHp, int items, int offensivePower, int position) {
+	private String name;
+
+	protected Unit(int maxHp, int items, int offensivePower, int position, String name) {
 		this.maxHp = maxHp;
 		this.currentHp = maxHp;
 
@@ -20,5 +26,11 @@ public class Unit {
 		this.minAttack = this.offensivePower - 10;
 		this.maxAttack = this.offensivePower + 10;
 		this.position = position;
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s [%d/%d]", name, currentHp, maxHp);
 	}
 }
