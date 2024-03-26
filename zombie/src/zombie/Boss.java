@@ -10,7 +10,7 @@ public class Boss extends Zombie {
 		this.setAttacks();
 		this.position = 10; // 10 층보스
 		this.name = "Zombie King";
-		this.items += ran.nextInt(3);
+		this.items *= ran.nextInt(3);
 	}
 	
 	@Override
