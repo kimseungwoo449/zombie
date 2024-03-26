@@ -2,25 +2,21 @@ package zombie;
 
 import java.util.Random;
 
-interface Playerable{
+interface Playerable {
 	public void setLv();
 
-	public void setMaxHp() ;
-	
-	public void setOffensivePower() ;
-	
+	public void setMaxHp();
+
+	public void setOffensivePower();
+
 	public void setExp(int exp);
-	
-	public void setItems(int items);
-	
-	public int getItems();
 }
 
-interface Damageable{
+interface Damageable {
 	public int damage();
 }
 
-public class Unit {
+abstract public class Unit {
 	protected Random ran = new Random();
 
 	protected int currentHp; // 현재 hp
@@ -40,15 +36,13 @@ public class Unit {
 
 	private boolean isDead;
 
-	protected Unit(int maxHp, int items, int offensivePower, int position, int lv, int exp, String name) {
+	protected Unit(int maxHp, int offensivePower, int lv, int exp, String name) {
 		this.maxHp = maxHp;
 		this.currentHp = maxHp;
 
-		this.items = items;
 		this.offensivePower = offensivePower;
 		this.minAttack = this.offensivePower - 10;
 		this.maxAttack = this.offensivePower + 10;
-		this.position = position;
 		this.name = name;
 		this.lv = lv;
 		this.exp = exp;
@@ -63,30 +57,34 @@ public class Unit {
 		this.currentHp -= attack;
 		dead();
 	}
-	
+
 	public int getPosition() {
 		return this.position;
 	}
-	
-	public void setPosition() {
-		this.position++;
-	}
+
+	abstract public void setPosition();
 
 	public int getExp() {
 		return this.exp;
 	}
 
+	abstract public void setItems(int items);
+
+	public int getItems() {
+		return this.items;
+	}
+
 	public boolean isDead() {
 		return this.isDead;
 	}
-	
+
 	private void dead() {
-		if(this.currentHp<=0)
+		if (this.currentHp <= 0)
 			this.isDead = true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("%d. %s [%d/%d]",lv, name, currentHp, maxHp);
+		return String.format("%d. %s [%d/%d]", lv, name, currentHp, maxHp);
 	}
 }
