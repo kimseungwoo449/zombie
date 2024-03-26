@@ -10,9 +10,13 @@ interface Playerable{
 	public void setOffensivePower() ;
 	
 	public void setExp(int exp);
+	
+	public void setItems(int items);
+	
+	public int getItems();
 }
 
-abstract public class Unit {
+public class Unit {
 	protected Random ran = new Random();
 
 	protected int currentHp; // 현재 hp
