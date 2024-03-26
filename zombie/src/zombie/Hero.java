@@ -1,6 +1,6 @@
 package zombie;
 
-public class Hero extends Unit implements Playerable, Damageable {
+public class Hero extends Unit implements Playerable {
 
 	private Hero() {
 		super(150, 10, 1, 0, "Player"); // 플레이어 초기 셋팅
@@ -10,7 +10,7 @@ public class Hero extends Unit implements Playerable, Damageable {
 	
 	private static Hero instance = new Hero();
 	
-	public Hero getInstance() {
+	public static Hero getInstance() {
 		return instance;
 	}
 	
@@ -60,8 +60,10 @@ public class Hero extends Unit implements Playerable, Damageable {
 	public int damage() {
 		int rDamage = ran.nextInt(super.maxAttack) + super.minAttack + 1;
 		int critical = ran.nextInt(4);
-		if (critical == 0)
+		if (critical == 0) {
+			System.out.printf("%s 크리티컬!!!\n",super.name);
 			rDamage *= 2;
+		}
 		return rDamage;
 	}
 }
