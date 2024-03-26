@@ -51,6 +51,8 @@ abstract public class Unit {
 
 	public void setCurrentHp(int attack) {
 		this.currentHp -= attack;
+		if(currentHp>maxHp)
+			this.currentHp = maxHp;
 		dead();
 	}
 
@@ -64,7 +66,7 @@ abstract public class Unit {
 		return this.exp;
 	}
 
-	abstract public void setItems(int items);
+	abstract boolean setItems(int items);
 
 	public int getItems() {
 		return this.items;
