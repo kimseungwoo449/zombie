@@ -57,6 +57,9 @@ abstract public class Unit {
 		this.currentHp -= attack;
 		if(currentHp>maxHp)
 			this.currentHp = maxHp;
+		if(currentHp<0)
+			this.currentHp = 0;
+		
 		dead();
 	}
 
