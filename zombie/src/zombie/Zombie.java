@@ -2,11 +2,11 @@ package zombie;
 
 public class Zombie extends Unit{
 	public Zombie() {
-		super(200, 5, 2, 10, "Zombie"); // 좀비 초기 셋팅
+		super(200, 5, 2, 50, "Zombie"); // 좀비 초기 셋팅 // 체력, 공격력, 레벨, 경험치, 이름
 		setItems(ran.nextInt(3));
 		setPosition();
 	}
-
+	
 	@Override
 	public void setPosition() {
 		this.position = ran.nextInt(8) + 2;
