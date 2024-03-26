@@ -17,6 +17,7 @@ public class Hero extends Unit implements Playerable {
 	@Override
 	public void setLv() {
 		if (super.exp >= 100) {
+			System.out.println("레벨업!");
 			super.lv++;
 			super.exp -= 100;
 			setMaxHp();
@@ -43,12 +44,13 @@ public class Hero extends Unit implements Playerable {
 	}
 
 	@Override
-	public void setItems(int items) {
+	public boolean setItems(int items) {
 		if (super.items + items < 0) {
 			System.err.println("아이템이 모두 소진되었습니다.");
-			return;
+			return false;
 		}
 		super.items += items;
+		return true;
 	}
 
 	@Override
