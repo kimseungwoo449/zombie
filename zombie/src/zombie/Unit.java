@@ -37,14 +37,18 @@ abstract public class Unit {
 		this.currentHp = maxHp;
 
 		this.offensivePower = offensivePower;
-		this.minAttack = this.offensivePower - 5;
-		this.maxAttack = this.offensivePower + 5;
+		setAttacks();
 		this.name = name;
 		this.lv = lv;
 		this.exp = exp;
 		this.isDead = false;
 	}
-
+	
+	public void setAttacks() {
+		this.minAttack = this.offensivePower - 5;
+		this.maxAttack = this.offensivePower + 5;
+	}
+	
 	public int getCurrentHp() {
 		return this.currentHp;
 	}
