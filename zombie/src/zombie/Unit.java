@@ -12,10 +12,6 @@ interface Playerable {
 	public void setExp(int exp);
 }
 
-interface Damageable {
-	public int damage();
-}
-
 abstract public class Unit {
 	protected Random ran = new Random();
 
@@ -32,7 +28,7 @@ abstract public class Unit {
 	protected int lv; // lv
 	protected int exp; // 경험치
 
-	private String name;
+	protected String name;
 
 	private boolean isDead;
 
@@ -41,8 +37,8 @@ abstract public class Unit {
 		this.currentHp = maxHp;
 
 		this.offensivePower = offensivePower;
-		this.minAttack = this.offensivePower - 10;
-		this.maxAttack = this.offensivePower + 10;
+		this.minAttack = this.offensivePower - 5;
+		this.maxAttack = this.offensivePower + 5;
 		this.name = name;
 		this.lv = lv;
 		this.exp = exp;
@@ -77,12 +73,14 @@ abstract public class Unit {
 	public boolean isDead() {
 		return this.isDead;
 	}
-
+	
 	private void dead() {
 		if (this.currentHp <= 0)
 			this.isDead = true;
 	}
-
+	
+	abstract public int damage();
+	
 	@Override
 	public String toString() {
 		return String.format("%d. %s [%d/%d]", lv, name, currentHp, maxHp);
