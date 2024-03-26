@@ -1,6 +1,6 @@
 package zombie;
 
-public class Zombie extends Unit {
+public class Zombie extends Unit implements Damageable{
 	public Zombie() {
 		super(200, 5, 2, 10, "Zombie"); // 플레이어 초기 셋팅
 		setItems(ran.nextInt(3));
@@ -16,11 +16,13 @@ public class Zombie extends Unit {
 	public void setItems(int items) {
 		this.items = items;
 	}
-//	private int setItem() {
-//		return ran.nextInt(3);
-//	}
-//	
-//	private int rPosition() {
-//		return ran.nextInt(8)+2;
-//	}
+
+	@Override
+	public int damage() {
+		int rDamage = ran.nextInt(super.maxAttack) + super.minAttack + 1;
+		int critical = ran.nextInt(6);	// 몹은 크리가 덜 터지게
+		if (critical == 0)
+			rDamage *= 2;
+		return rDamage;
+	}
 }
