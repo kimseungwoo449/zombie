@@ -2,7 +2,7 @@ package zombie;
 
 public class Zombie extends Unit{
 	public Zombie() {
-		super(200, 5, 2, 10, "Zombie"); // 플레이어 초기 셋팅
+		super(200, 5, 2, 10, "Zombie"); // 좀비 초기 셋팅
 		setItems(ran.nextInt(3));
 		setPosition();
 	}
@@ -13,8 +13,9 @@ public class Zombie extends Unit{
 	}
 
 	@Override
-	public void setItems(int items) {
+	public boolean setItems(int items) {
 		this.items = items;
+		return true;
 	}
 
 	@Override
