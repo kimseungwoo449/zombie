@@ -1,12 +1,19 @@
 package zombie;
 
 public class Hero extends Unit implements Playerable, Damageable {
-	public Hero() {
+
+	private Hero() {
 		super(150, 10, 1, 0, "Player"); // 플레이어 초기 셋팅
 		setPosition();
 		setItems(2);
 	}
-
+	
+	private static Hero instance = new Hero();
+	
+	public Hero getInstance() {
+		return instance;
+	}
+	
 	@Override
 	public void setLv() {
 		if (super.exp >= 100) {
