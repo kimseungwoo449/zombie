@@ -16,6 +16,10 @@ interface Playerable{
 	public int getItems();
 }
 
+interface Damageable{
+	public int damage();
+}
+
 public class Unit {
 	protected Random ran = new Random();
 
