@@ -1,7 +1,7 @@
 package zombie;
 
 public class Hero extends Unit implements Playerable, Damageable {
-	public Hero(int maxHp, int items, int offensivePower, int position) {
+	public Hero() {
 		super(150, 2, 10, 1, 1, 0, "Player"); // 플레이어 초기 셋팅
 	}
 
@@ -49,7 +49,7 @@ public class Hero extends Unit implements Playerable, Damageable {
 
 	@Override
 	public int damage() {
-		int rDamage = ran.nextInt(super.minAttack) + super.maxAttack + 1;
+		int rDamage = ran.nextInt(super.maxAttack) + super.minAttack + 1;
 		int critical = ran.nextInt(4);
 		if (critical == 0)
 			rDamage *= 2;
